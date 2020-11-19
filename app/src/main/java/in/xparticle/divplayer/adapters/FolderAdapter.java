@@ -9,18 +9,19 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+
 import java.util.ArrayList;
+import java.util.List;
 
 import in.xparticle.divplayer.R;
 
 public class FolderAdapter extends RecyclerView.Adapter<FolderAdapter.MyViewHolder> {
 
     private final Context mContext;
-    private final ArrayList<String> mArrayList;
+    private List<String> mArrayList;
 
-    public FolderAdapter(Context mContext, ArrayList<String> mArrayList) {
+    public FolderAdapter(Context mContext) {
         this.mContext = mContext;
-        this.mArrayList = mArrayList;
     }
 
     @NonNull
@@ -33,11 +34,18 @@ public class FolderAdapter extends RecyclerView.Adapter<FolderAdapter.MyViewHold
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.folderName.setText(mArrayList.get(position));
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
-        if(mArrayList.size() > 0) {
+        if(mArrayList!= null) {
             return mArrayList.size();
         }
         return 0;
@@ -52,4 +60,9 @@ public class FolderAdapter extends RecyclerView.Adapter<FolderAdapter.MyViewHold
             folderName = itemView.findViewById(R.id.folder_name);
         }
     }
+    public void setFolder(List<String> folder){
+        mArrayList = folder;
+        notifyDataSetChanged();
+    }
+
 }
