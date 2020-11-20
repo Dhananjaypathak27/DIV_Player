@@ -6,12 +6,13 @@
     android:layout_margin="10dp">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/thumbnail"
+        android:id="@+id/img_thumbnail"
         android:layout_width="112dp"
         android:layout_height="62dp"
         app:cardCornerRadius="5dp"
         >
         <ImageView
+            android:id="@+id/thumbnail"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@drawable/ic_launcher_background"
@@ -33,11 +34,14 @@
     </androidx.cardview.widget.CardView>
 
     <TextView
+        android:id="@+id/video_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hello this is apple"
-        android:layout_toEndOf="@id/thumbnail"
+        android:layout_toEndOf="@id/img_thumbnail"
         android:layout_centerVertical="true"
+        android:layout_marginStart="16dp"
+        android:lines="1"
         android:textSize="16sp"
         />
 </RelativeLayout>

@@ -1,6 +1,7 @@
 package in.xparticle.divplayer.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import in.xparticle.divplayer.R;
+import in.xparticle.divplayer.VideoFolderActivity;
 
 public class FolderAdapter extends RecyclerView.Adapter<FolderAdapter.MyViewHolder> {
 
@@ -38,7 +40,9 @@ public class FolderAdapter extends RecyclerView.Adapter<FolderAdapter.MyViewHold
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(mContext, VideoFolderActivity.class);
+                intent.putExtra("folderName",mArrayList.get(position));
+                mContext.startActivity(intent);
             }
         });
     }

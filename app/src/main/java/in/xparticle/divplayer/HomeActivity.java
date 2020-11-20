@@ -13,6 +13,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -26,6 +30,8 @@ public class HomeActivity extends AppCompatActivity {
 
 //    ui
     RecyclerView mRecyclerView;
+    TextView titleText;
+    ImageView backButton;
 
     //var
     private static final int REQUEST_CODE_PERMISSION = 123;
@@ -38,10 +44,13 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-
+        titleText = findViewById(R.id.top_folder_name);
+        backButton = findViewById(R.id.back_button);
+        backButton.setVisibility(View.INVISIBLE);
         mRecyclerView = findViewById(R.id.folder_recyclerView);
         mFolderViewModel = new ViewModelProvider(this, new FolderViewModelFactory(this.getApplication(),"new awesome param")).get(FolderViewModel.class);
         mFolderList = new ArrayList<>();
+        titleText.setText("Folders");
         permission();
 
         initRecyclerView();
