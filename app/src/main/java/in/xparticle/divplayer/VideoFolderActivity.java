@@ -70,7 +70,7 @@ public class VideoFolderActivity extends AppCompatActivity {
     private void initRecyclerView() {
         mRecyclerView = findViewById(R.id.video_folder_recyclerView);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this,RecyclerView.VERTICAL,false);
-        mVideoFolderAdapter = new VideoFolderAdapter(VideoFolderActivity.this,videoFiles);
+        mVideoFolderAdapter = new VideoFolderAdapter(VideoFolderActivity.this);
         mRecyclerView.setAdapter(mVideoFolderAdapter);
         mRecyclerView.setLayoutManager(linearLayoutManager);
         mRecyclerView.setHasFixedSize(true);

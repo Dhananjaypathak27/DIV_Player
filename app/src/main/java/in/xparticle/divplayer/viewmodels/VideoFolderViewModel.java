@@ -18,7 +18,9 @@ import in.xparticle.divplayer.models.VideoFile;
 public class VideoFolderViewModel extends ViewModel {
 
     private static final String TAG = "VideoFolderViewModel";
-    private MutableLiveData<List<VideoFile>> mVideos = new MutableLiveData<>();
+    private final MutableLiveData<List<VideoFile>> mVideos = new MutableLiveData<>();
+    private final MutableLiveData<String> currentUrl = new MutableLiveData<>();
+    List<VideoFile> tempFolderVideos;
     public VideoFolderViewModel(Context context, String folderName) {
 
         getFolderVideos(context,folderName);
@@ -28,9 +30,13 @@ public class VideoFolderViewModel extends ViewModel {
         return mVideos;
     }
 
+    public LiveData<String> getCurrentUrl(int position){
+        currentUrl.postValue(tempFolderVideos.get(position).getPath());
+        return currentUrl;
+    }
 
     public void getFolderVideos(Context context, String folderName) {
-        List<VideoFile> tempFolderVideos = new ArrayList<>();
+        tempFolderVideos = new ArrayList<>();
 
         Uri uri= MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
 

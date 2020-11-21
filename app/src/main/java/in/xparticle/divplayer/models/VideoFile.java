@@ -101,6 +101,18 @@ public class VideoFile implements Parcelable {
         this.duration = duration;
     }
 
+    @Override
+    public String toString() {
+        return "VideoFile{" +
+                "id='" + id + '\'' +
+                ", path='" + path + '\'' +
+                ", title='" + title + '\'' +
+                ", fileName='" + fileName + '\'' +
+                ", size='" + size + '\'' +
+                ", dateAdded='" + dateAdded + '\'' +
+                ", duration='" + duration + '\'' +
+                '}';
+    }
 
     @Override
     public int describeContents() {

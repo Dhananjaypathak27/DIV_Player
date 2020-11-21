@@ -1,6 +1,7 @@
 package in.xparticle.divplayer.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,8 @@ import com.bumptech.glide.Glide;
 import java.util.List;
 
 import in.xparticle.divplayer.R;
+import in.xparticle.divplayer.VideoActivity;
+import in.xparticle.divplayer.VideoFolderActivity;
 import in.xparticle.divplayer.models.VideoFile;
 
 public class VideoFolderAdapter extends RecyclerView.Adapter<VideoFolderAdapter.MyViewHolder> {
@@ -22,9 +25,9 @@ public class VideoFolderAdapter extends RecyclerView.Adapter<VideoFolderAdapter.
     private Context mContext;
     private List<VideoFile> mArrayList;
 
-    public VideoFolderAdapter(Context mContext, List<VideoFile> mArrayList) {
+    public VideoFolderAdapter(Context mContext) {
         this.mContext = mContext;
-        this.mArrayList = mArrayList;
+
     }
 
     @NonNull
@@ -43,7 +46,9 @@ public class VideoFolderAdapter extends RecyclerView.Adapter<VideoFolderAdapter.
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //pass to video intent
+                Intent intent = new Intent(mContext, VideoActivity.class);
+                intent.putExtra("file",mArrayList.get(position));
+                mContext.startActivity(intent);
             }
         });
     }
@@ -53,7 +58,7 @@ public class VideoFolderAdapter extends RecyclerView.Adapter<VideoFolderAdapter.
         return mArrayList.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder{
+    public static class MyViewHolder extends RecyclerView.ViewHolder{
         ImageView mThumbnail;
 
         TextView mVideoDuration;

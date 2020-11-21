@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -34,6 +35,7 @@ public class HomeActivity extends AppCompatActivity {
     ImageView backButton;
 
     //var
+    private static final String TAG = "HomeActivity";
     private static final int REQUEST_CODE_PERMISSION = 123;
     FolderAdapter mFolderAdapter;
     List<String> mFolderList;
@@ -73,6 +75,7 @@ public class HomeActivity extends AppCompatActivity {
         subscribeObservers();
         mRecyclerView.setAdapter(mFolderAdapter);
         mRecyclerView.setLayoutManager(linearLayoutManager);
+        Toast.makeText(HomeActivity.this,"yes",Toast.LENGTH_SHORT).show();
 
     }
 
@@ -100,12 +103,7 @@ public class HomeActivity extends AppCompatActivity {
                 Toast.makeText(HomeActivity.this, "Permission Granted 2", Toast.LENGTH_SHORT).show();
 
                 //setting observer in recyclerview
-                mRecyclerView = findViewById(R.id.folder_recyclerView);
-                mFolderViewModel = new ViewModelProvider(this, new FolderViewModelFactory(this.getApplication(),"new awesome param")).get(FolderViewModel.class);
-                mFolderList = new ArrayList<>();
                 permission();
-                initRecyclerView();
-                subscribeObservers();
 
             }
             else{
