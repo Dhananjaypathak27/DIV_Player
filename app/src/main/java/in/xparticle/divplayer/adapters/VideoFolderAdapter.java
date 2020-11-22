@@ -22,11 +22,13 @@ import in.xparticle.divplayer.models.VideoFile;
 
 public class VideoFolderAdapter extends RecyclerView.Adapter<VideoFolderAdapter.MyViewHolder> {
 
-    private Context mContext;
+    private final Context mContext;
     private List<VideoFile> mArrayList;
+    String myFolderName;
 
-    public VideoFolderAdapter(Context mContext) {
+    public VideoFolderAdapter(Context mContext,String myFolderName) {
         this.mContext = mContext;
+        this.myFolderName = myFolderName;
 
     }
 
@@ -47,7 +49,9 @@ public class VideoFolderAdapter extends RecyclerView.Adapter<VideoFolderAdapter.
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, VideoActivity.class);
-                intent.putExtra("file",mArrayList.get(position));
+//                intent.putExtra("file",mArrayList.get(position));
+                intent.putExtra("position",String.valueOf(position));
+                intent.putExtra("folderName",myFolderName);
                 mContext.startActivity(intent);
             }
         });

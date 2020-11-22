@@ -18,7 +18,9 @@
 
 
         <activity android:name=".HomeActivity" />
-        <activity android:name=".VideoActivity" />
+        <activity android:name=".VideoActivity"
+            android:configChanges="screenSize|orientation|keyboardHidden">
+        </activity>
         <activity android:name=".VideoFolderActivity"/>
         
         <activity
