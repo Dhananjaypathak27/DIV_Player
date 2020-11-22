@@ -17,7 +17,6 @@ import java.util.List;
 
 import in.xparticle.divplayer.R;
 import in.xparticle.divplayer.VideoActivity;
-import in.xparticle.divplayer.VideoFolderActivity;
 import in.xparticle.divplayer.models.VideoFile;
 
 public class VideoFolderAdapter extends RecyclerView.Adapter<VideoFolderAdapter.MyViewHolder> {
@@ -42,7 +41,9 @@ public class VideoFolderAdapter extends RecyclerView.Adapter<VideoFolderAdapter.
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.mVideoName.setText(mArrayList.get(position).getTitle());
-        holder.mVideoDuration.setText(mArrayList.get(position).getDuration());
+
+        holder.mVideoDuration.setText(getVideoDuration(position));
+
         Glide.with(mContext).load(mArrayList.get(position).getPath()).into(holder.mThumbnail);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -55,6 +56,45 @@ public class VideoFolderAdapter extends RecyclerView.Adapter<VideoFolderAdapter.
                 mContext.startActivity(intent);
             }
         });
+    }
+
+    private String getVideoDuration(int position){
+        long duration = Long.parseLong(mArrayList.get(position).getDuration());
+        String res,min,h,sec;
+        duration = duration /1000;
+        int min1,h1,sec1;
+
+
+        min1 = (int) duration / 60;
+        sec1 = (int) duration % 60;
+
+
+        if(min1>=60){
+            h1 = min1 / 60;
+            min1 = min1 % 60;
+            h = convertIntoTwoDecimal(h1);
+            min = convertIntoTwoDecimal(min1);
+            sec = convertIntoTwoDecimal(sec1);
+            res = h + ":" + min + ":" + sec;
+        }
+        else {
+            min = convertIntoTwoDecimal(min1);
+            sec = convertIntoTwoDecimal(sec1);
+            res = min + ":" + sec;
+        }
+
+        return  res;
+    }
+
+    private String convertIntoTwoDecimal(int num){
+        String res;
+        if(num<10){
+            res = 0 +""+ num;
+        }
+        else{
+            res = String.valueOf(num);
+        }
+        return  res;
     }
 
     @Override

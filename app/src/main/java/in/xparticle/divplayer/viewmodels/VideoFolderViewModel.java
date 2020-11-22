@@ -66,10 +66,10 @@ public class VideoFolderViewModel extends ViewModel {
                 String path = cursor.getString(1);
                 String title = cursor.getString(2);
                 String size = cursor.getString(3);
-                String dataAdded = cursor.getString(4);
+                String dateAdded = cursor.getString(4);
                 String duration = cursor.getString(5);
                 String fileName = cursor.getString(6);
-                VideoFile videoFiles = new VideoFile(id,path,title,size,dataAdded,
+                VideoFile videoFiles = new VideoFile(id,path,title,size,dateAdded,
                         duration,fileName);
                 Log.d("TAG", "getAllVideos: "+path);
                 tempFolderVideos.add(videoFiles);

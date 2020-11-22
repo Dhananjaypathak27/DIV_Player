@@ -3,34 +3,34 @@ package in.xparticle.divplayer.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class VideoFile implements Parcelable {
+public class VideoFile implements Parcelable{
     private String id;
     private String path;
     private String title;
-    private String fileName;
     private String size;
     private String dateAdded;
     private String duration;
+    private String fileName;
 
-    public VideoFile(String id, String path, String title, String fileName, String size,
-                     String dateAdded, String duration) {
+    public VideoFile(String id, String path, String title, String size,
+                     String dateAdded, String duration, String fileName) {
         this.id = id;
         this.path = path;
         this.title = title;
-        this.fileName = fileName;
         this.size = size;
         this.dateAdded = dateAdded;
         this.duration = duration;
+        this.fileName = fileName;
     }
 
     protected VideoFile(Parcel in) {
         id = in.readString();
         path = in.readString();
         title = in.readString();
-        fileName = in.readString();
         size = in.readString();
         dateAdded = in.readString();
         duration = in.readString();
+        fileName = in.readString();
     }
 
     public static final Creator<VideoFile> CREATOR = new Creator<VideoFile>() {
@@ -69,14 +69,6 @@ public class VideoFile implements Parcelable {
         this.title = title;
     }
 
-    public String getFileName() {
-        return fileName;
-    }
-
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
-    }
-
     public String getSize() {
         return size;
     }
@@ -101,17 +93,12 @@ public class VideoFile implements Parcelable {
         this.duration = duration;
     }
 
-    @Override
-    public String toString() {
-        return "VideoFile{" +
-                "id='" + id + '\'' +
-                ", path='" + path + '\'' +
-                ", title='" + title + '\'' +
-                ", fileName='" + fileName + '\'' +
-                ", size='" + size + '\'' +
-                ", dateAdded='" + dateAdded + '\'' +
-                ", duration='" + duration + '\'' +
-                '}';
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
     }
 
     @Override
@@ -124,9 +111,22 @@ public class VideoFile implements Parcelable {
         dest.writeString(id);
         dest.writeString(path);
         dest.writeString(title);
-        dest.writeString(fileName);
         dest.writeString(size);
         dest.writeString(dateAdded);
         dest.writeString(duration);
+        dest.writeString(fileName);
+    }
+
+    @Override
+    public String toString() {
+        return "VideoFile{" +
+                "id='" + id + '\'' +
+                ", path='" + path + '\'' +
+                ", title='" + title + '\'' +
+                ", size='" + size + '\'' +
+                ", dateAdded='" + dateAdded + '\'' +
+                ", duration='" + duration + '\'' +
+                ", fileName='" + fileName + '\'' +
+                '}';
     }
 }

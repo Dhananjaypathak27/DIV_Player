@@ -49,16 +49,12 @@ public class HomeActivity extends AppCompatActivity {
         titleText = findViewById(R.id.top_folder_name);
         backButton = findViewById(R.id.back_button);
         backButton.setVisibility(View.INVISIBLE);
-        mRecyclerView = findViewById(R.id.folder_recyclerView);
         mFolderViewModel = new ViewModelProvider(this, new FolderViewModelFactory(this.getApplication(),"new awesome param")).get(FolderViewModel.class);
+        Toast.makeText(this,"on create",Toast.LENGTH_SHORT).show();
         mFolderList = new ArrayList<>();
         titleText.setText("Folders");
         permission();
 
-        initRecyclerView();
-
-        subscribeObservers();
-//        fakeData();
     }
 
     private void subscribeObservers(){
@@ -70,6 +66,7 @@ public class HomeActivity extends AppCompatActivity {
         });
     }
     private void initRecyclerView() {
+        mRecyclerView = findViewById(R.id.folder_recyclerView);
         mFolderAdapter = new FolderAdapter(this);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this,RecyclerView.VERTICAL,false);
         subscribeObservers();
@@ -102,6 +99,7 @@ public class HomeActivity extends AppCompatActivity {
             if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
                 Toast.makeText(HomeActivity.this, "Permission Granted 2", Toast.LENGTH_SHORT).show();
 
+
                 //setting observer in recyclerview
                 permission();
 
@@ -112,16 +110,4 @@ public class HomeActivity extends AppCompatActivity {
             }
         }
     }
-
-
-
-
-
-//    private void fakeData() {
-//        String data = "super man";
-//        for(int i=0;i<100;i++) {
-//            mFolderList.add(data);
-//        }
-//        mFolderAdapter.notifyDataSetChanged();
-//    }
 }
